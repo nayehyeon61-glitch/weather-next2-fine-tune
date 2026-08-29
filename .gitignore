@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/
+*.nc
+*.zarr/
+weather-me-fine_tune_weight.npz
+weather-me-fine_tune_weight.metrics.json
