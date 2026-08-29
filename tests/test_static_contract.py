@@ -20,7 +20,13 @@ class StaticContractTest(unittest.TestCase):
 
     def test_weight_is_gitignored(self):
         ignored = (ROOT / ".gitignore").read_text(encoding="utf-8")
-        self.assertIn("weather-me-fine_tune_weight.npz", ignored.splitlines())
+        self.assertIn("weather-me-fine_tune_weight*.npz", ignored.splitlines())
+
+    def test_model_metadata_is_saved_for_inference_adapter(self):
+        source = (ROOT / "fine_tune.py").read_text(encoding="utf-8")
+        self.assertIn('args.output.with_suffix(".metadata.json")', source)
+        self.assertIn('"model_name": args.model_name', source)
+        self.assertIn('"weathernext_release": "v0.3.0"', source)
 
 
 if __name__ == "__main__":

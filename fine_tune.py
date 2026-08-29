@@ -350,8 +350,28 @@ def main() -> None:
         json.dumps(history, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+    metadata_path = args.output.with_suffix(".metadata.json")
+    metadata_path.write_text(
+        json.dumps(
+            {
+                "checkpoint_format": "weathernext.weathernext2.fgn.CheckPoint",
+                "weathernext_release": "v0.3.0",
+                "model_name": args.model_name,
+                "split": args.split,
+                "model_member": args.model_member,
+                "fine_tune_steps": args.steps,
+                "target_lead_time": args.target_lead_time,
+                "inference_ready": True,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     print(f"Saved fine-tuned weights: {args.output}")
     print(f"Saved training metrics: {metrics_path}")
+    print(f"Saved checkpoint metadata: {metadata_path}")
 
 
 if __name__ == "__main__":

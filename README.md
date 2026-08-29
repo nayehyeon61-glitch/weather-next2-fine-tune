@@ -8,6 +8,7 @@ Google DeepMind의 공개 WeatherNext 2 체크포인트를 HRES/ERA5 형식 데�
 
 - `weather-me-fine_tune_weight.npz`: 파인튜닝된 모델 가중치
 - `weather-me-fine_tune_weight.metrics.json`: step별 loss와 gradient norm
+- `weather-me-fine_tune_weight.metadata.json`: 모델 종류·release·member 정보
 
 가중치 파일은 크기가 크므로 Git에는 올라가지 않도록 `.gitignore`에 포함되어
 있습니다.
@@ -138,6 +139,11 @@ with open("weather-me-fine_tune_weight.npz", "rb") as f:
 
 params = fine_tuned.params
 ```
+
+`metadata.json`은 별도 추론 시스템이 `WeatherNext2`,
+`WeatherNextCyclones`, `WeatherNextCyclones_Mini` 중 올바른 config를 선택하고
+가중치와 모델 구조가 일치하는지 검사할 때 사용합니다. 파인튜닝이 끝난 가중치는
+추론 시스템에서 읽기 전용으로 로드하며 추가 optimizer update를 수행하지 않습니다.
 
 ## 주요 옵션
 
