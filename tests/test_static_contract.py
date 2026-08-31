@@ -25,6 +25,7 @@ class StaticContractTest(unittest.TestCase):
     def test_model_metadata_is_saved_for_inference_adapter(self):
         source = (ROOT / "fine_tune.py").read_text(encoding="utf-8")
         self.assertIn('args.output.with_suffix(".metadata.json")', source)
+        self.assertIn('"checkpoint_kind": "fine_tuned"', source)
         self.assertIn('"model_name": args.model_name', source)
         self.assertIn('"weathernext_release": "v0.3.0"', source)
 

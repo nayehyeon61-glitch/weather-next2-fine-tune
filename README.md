@@ -10,6 +10,10 @@ Google DeepMind의 공개 WeatherNext 2 체크포인트를 HRES/ERA5 형식 데�
 - `weather-me-fine_tune_weight.metrics.json`: step별 loss와 gradient norm
 - `weather-me-fine_tune_weight.metadata.json`: 모델 종류·release·member 정보
 
+metadata에는 `checkpoint_kind: fine_tuned`이 기록됩니다. 후단
+`typnonn_preesure_data_loader`의 token 생성·학습 과정은 이 값을 전달하여 공식
+pretrained 출력과 fine-tuned 출력을 혼동하지 않도록 검증합니다.
+
 가중치 파일은 크기가 크므로 Git에는 올라가지 않도록 `.gitignore`에 포함되어
 있습니다.
 

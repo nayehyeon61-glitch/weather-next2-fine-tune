@@ -355,6 +355,7 @@ def main() -> None:
         json.dumps(
             {
                 "checkpoint_format": "weathernext.weathernext2.fgn.CheckPoint",
+                "checkpoint_kind": "fine_tuned",
                 "weathernext_release": "v0.3.0",
                 "model_name": args.model_name,
                 "split": args.split,
